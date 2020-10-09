@@ -6,6 +6,8 @@
 const Twit = require('twit');
 const config = process.env || require('./config');
 
+const express = require('express')
+
 const twit = new Twit(config);
 const screen_names = config.screen_names.split(',');
 const search_terms = config.search_terms.split(',');
@@ -147,3 +149,13 @@ function getRandom(arr) {
 function randomTime(min, max) {
   return Math.round((Math.random() * (max - min)) + min) * 1000;
 }
+const app = express()
+const port = process.env.PORT || 8080;
+
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})
+
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`)
+})
