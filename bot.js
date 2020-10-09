@@ -50,7 +50,6 @@ function findUserByFollowers(screenName) {
   console.log(`Finding a user who follows @${screenName}...`);
   return twit.get('followers/list', { screen_name: screenName })
     .then(({ data }) => {
-    console.log(data)
       if (!data.users) throw data.errors;
       return data.users.filter((user) => !user.following)
         .map((user) => user.screen_name);
@@ -68,7 +67,6 @@ function findUserByTopic(list) {
       count: 100
     })
     .then(({ data }) => {
-    console.log(data)
       if (!data.statuses) throw data.errors;
       return data.statuses
         .filter((status) => !status.user.following)
