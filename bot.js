@@ -16,10 +16,10 @@ const intervals = [60, 600]; // min, max (in seconds)
 const otherList = 'web-development-datavis';
 
 
+let counter=0;
 // Initialise:
 loop();
 
-let counter=0;
 // Execute on irregular intervals:
 function loop() {
   counter++;
