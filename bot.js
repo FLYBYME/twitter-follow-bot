@@ -22,14 +22,14 @@ loop();
 let counter=0;
 // Execute on irregular intervals:
 function loop() {
-  coutner++;
+  counter++;
   
   execute().catch((err)=>{
    console.log(err) 
   });
   setTimeout(loop, randomTime(...intervals));
-  if(coutner>10){
-     coutner=0;
+  if(counter>10){
+     counter=0;
     remove().catch((err)=>{
    console.log(err) 
   });
