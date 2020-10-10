@@ -47,6 +47,7 @@ function execute() {
   var randomList = getRandom(search_terms);
   return findUserByTopic(randomList).then( function(user){
   console.log(user)
+    addToList(otherList)(user)
   } );
 }
 
