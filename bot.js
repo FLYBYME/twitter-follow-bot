@@ -45,7 +45,9 @@ function remove(){
 // Do something random:
 function execute() {
   var randomList = getRandom(search_terms);
-  return findUserByTopic(randomList).then( addToList(randomList) );
+  return findUserByTopic(randomList).then( function(user){
+  console.log(user)
+  } );
 }
 
 
