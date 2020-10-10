@@ -88,7 +88,7 @@ function findUserByTopic(list) {
 
 // Follow a user, mute them, and add them to a list:
 function addToList(list) {
-  return (user) => return (user) => {
+  return (user) => {
   twit.post('friendships/create', {
      // slug: list,
       //owner_screen_name: config.username,
