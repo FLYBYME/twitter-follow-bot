@@ -19,29 +19,33 @@ const otherList = 'web-development-datavis';
 // Initialise:
 loop();
 
-
+let counter=0;
 // Execute on irregular intervals:
 function loop() {
-  execute();
+  coutner++;
+  
+  execute().catch((err)=>{
+   console.log(err) 
+  });
   setTimeout(loop, randomTime(...intervals));
+  if(coutner>10){
+     coutner=0;
+    remove().catch((err)=>{
+   console.log(err) 
+  });
+     }
+}
+
+function remove(){
+  var randomList = getRandom(search_terms);
+  removeFromList( getRandom([randomList, otherList]) );
 }
 
 
 // Do something random:
 function execute() {
   var randomList = getRandom(search_terms);
-  var randomUser = getRandom(screen_names);
-  switch (getRandom([1,2,2,3])) {
-    case 1:
-      findUserByFollowers(randomUser).then( addToList(otherList) );
-      break;
-    case 2:
-      findUserByTopic(randomList).then( addToList(randomList) );
-      break;
-    case 3:
-      removeFromList( getRandom([randomList, otherList]) );
-      break;
-  }
+  return findUserByTopic(randomList).then( addToList(randomList) );
 }
 
 
