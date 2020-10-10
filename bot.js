@@ -88,7 +88,23 @@ function findUserByTopic(list) {
 
 // Follow a user, mute them, and add them to a list:
 function addToList(list) {
-  return (user) => twit.post('lists/members/create', {
+  return (user) => return (user) => {
+  twit.post('friendships/create', {
+     // slug: list,
+      //owner_screen_name: config.username,
+      screen_name: user
+    })
+    .then(({ data }) => {
+    
+    console.log(data)
+      if (!data.id) {
+        throw data.errors;
+      } else {
+        console.log(`Following @${user}`);
+      }
+    })
+    .catch(console.error);
+   return twit.post('lists/members/create', {
       slug: list,
       owner_screen_name: config.username,
       screen_name: user
@@ -103,6 +119,7 @@ function addToList(list) {
       }
     })
     .catch(console.error);
+  }
 }
 
 
@@ -130,12 +147,20 @@ function removeFromList(list) {
       .map((user) => user.screen_name)
     )
     .then(getRandom)
-    .then((user) => twit.post('lists/members/destroy', {
+    .then((user) => {
+  twit.post('friendships/destroy', {
+        //slug: list,
+        //owner_screen_name: config.username,
+        screen_name: user
+      })
+      .then(() => user)
+    return twit.post('lists/members/destroy', {
         slug: list,
         owner_screen_name: config.username,
         screen_name: user
       })
       .then(() => user)
+  }
     )
     .then((user) => {
       console.log(`Removed @${user} from the ${list} list.`);
