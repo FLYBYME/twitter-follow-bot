@@ -148,7 +148,7 @@ function removeFromList(list) {
     )
     .then(getRandom)
     .then((user) => {
-  twit.post('friendships/destroy', {
+  return twit.post('friendships/destroy', {
         //slug: list,
         //owner_screen_name: config.username,
         screen_name: user
