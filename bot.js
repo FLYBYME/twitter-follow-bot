@@ -125,7 +125,7 @@ function addToList(list) {
 
 // Remove a random user from a list, if they don't follow me back:
 function removeFromList(list) {
-  twit.get('lists/members', {
+ return twit.get('lists/members', {
       slug: list,
       owner_screen_name: config.username,
       skip_status: 1,
@@ -148,7 +148,7 @@ function removeFromList(list) {
     )
     .then(getRandom)
     .then((user) => {
-  return twit.post('friendships/destroy', {
+  twit.post('friendships/destroy', {
         //slug: list,
         //owner_screen_name: config.username,
         screen_name: user
