@@ -38,7 +38,7 @@ function loop() {
 
 function remove(){
   var randomList = getRandom(search_terms);
-  removeFromList( getRandom([randomList, otherList]) );
+ return removeFromList( getRandom([randomList, otherList]) );
 }
 
 
